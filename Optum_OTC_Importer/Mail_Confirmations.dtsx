@@ -1,0 +1,687 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/17/2015 2:48:06 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="USPGINB203"
+  DTS:CreatorName="USPGI\cjohnson1"
+  DTS:DTSID="{FE861638-54B0-4366-8DA3-3E2EACE8AE25}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Mail_Confirmations"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{06B431B4-B42E-4B06-8B3A-E4F8EE6C5A71}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{44956985-7D7F-486D-9767-C2A0ADE43EE6}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\OptumRx\Mail Confirmations\410388_2 - UNITEDHEALTH GROUP OPTUM RX - return file.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQLCLUSTER1.OPTUM_OTC_TransactionDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0BE8AD01-E5FD-4E26-B951-80714DCAFDF3}"
+      DTS:ObjectName="SQLCLUSTER1.OPTUM_OTC_TransactionDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLCLUSTER1;Initial Catalog=OPTUM_OTC_TransactionDB;Provider=SQLNCLI11;Integrated Security=SSPI;Application Name=SSIS-Mail_Confirmations-{0BE8AD01-E5FD-4E26-B951-80714DCAFDF3}SQLCLUSTER1.OPTUM_OTC_TransactionDB;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Import Excel Files"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{74125BB1-C4D7-4411-93AA-036EA07B04A6}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import Excel Files"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server v10; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          BLOBTempStoragePath=""
+          bufferTempStoragePath=""
+          version="1">
+          <components>
+            <component
+              refId="Package\Import Excel Files\Confirmation File"
+              componentClassID="{8C084929-27D1-479F-9641-ABB7CDADF1AC}"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Confirmation File"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'410388_2 - UNITEDHEALTH GROUP O$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Excel Files\Confirmation File.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[subs_num]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[subs_num]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[subs_num]"
+                      name="subs_num"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[fname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[fname]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[fname]"
+                      name="fname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[lname]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[lname]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[lname]"
+                      name="lname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[address2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[address2]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[address2]"
+                      name="address2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[address]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[address]"
+                      name="address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[city]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[city]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[city]"
+                      name="city"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[state]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[state]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[state]"
+                      name="state"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[zip]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[zip]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[zip]"
+                      name="zip"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[maildate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[maildate]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[maildate]"
+                      name="maildate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[descriptn]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[descriptn]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[descriptn]"
+                      name="descriptn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[version]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[version]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[version]"
+                      name="version"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[notes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[notes]"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[notes]"
+                      name="notes"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[subs_num]"
+                      dataType="wstr"
+                      length="255"
+                      name="subs_num" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[fname]"
+                      dataType="wstr"
+                      length="255"
+                      name="fname" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[lname]"
+                      dataType="wstr"
+                      length="255"
+                      name="lname" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[address2]"
+                      dataType="wstr"
+                      length="255"
+                      name="address2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[address]"
+                      dataType="wstr"
+                      length="255"
+                      name="address" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="255"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[state]"
+                      dataType="wstr"
+                      length="255"
+                      name="state" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[zip]"
+                      dataType="wstr"
+                      length="255"
+                      name="zip" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[maildate]"
+                      dataType="wstr"
+                      length="255"
+                      name="maildate" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[descriptn]"
+                      dataType="wstr"
+                      length="255"
+                      name="descriptn" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[version]"
+                      dataType="wstr"
+                      length="255"
+                      name="version" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].ExternalColumns[notes]"
+                      dataType="wstr"
+                      length="255"
+                      name="notes" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[subs_num]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[subs_num]"
+                      name="subs_num" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[fname]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[fname]"
+                      name="fname" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[lname]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[lname]"
+                      name="lname" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[address2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[address2]"
+                      name="address2" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[address]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[address]"
+                      name="address" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[city]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[city]"
+                      name="city" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[state]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[state]"
+                      name="state" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[zip]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[zip]"
+                      name="zip" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[maildate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[maildate]"
+                      name="maildate" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[descriptn]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[descriptn]"
+                      name="descriptn" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[version]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[version]"
+                      name="version" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[notes]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[notes]"
+                      name="notes" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import Excel Files\Member_Mail_Confirmations"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SqlServer v10; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Member_Mail_Confirmations"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Mail_Kit_Confirmations]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import Excel Files\Member_Mail_Confirmations.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SQLCLUSTER1.OPTUM_OTC_TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[SQLCLUSTER1.OPTUM_OTC_TransactionDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[fname]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="fname"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[fname]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[fname]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[lname]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="lname"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[lname]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[lname]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[address2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="address2"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[address2]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[address2]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="address"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[address]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[address]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[city]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="city"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[state]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="state"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[state]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[state]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[zip]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="zip"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[zip]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[zip]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[maildate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="maildate"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[maildate]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[maildate]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[descriptn]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="descriptn"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[descriptn]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[descriptn]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[version]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="version"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[version]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[version]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[notes]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="notes"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[notes]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[notes]" />
+                    <inputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].Columns[subs_num]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="subs_num"
+                      externalMetadataColumnId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[subs_id]"
+                      lineageId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output].Columns[subs_num]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[subs_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="subs_id" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[fname]"
+                      dataType="wstr"
+                      length="255"
+                      name="fname" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[lname]"
+                      dataType="wstr"
+                      length="255"
+                      name="lname" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[address2]"
+                      dataType="wstr"
+                      length="255"
+                      name="address2" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[address]"
+                      dataType="wstr"
+                      length="255"
+                      name="address" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      dataType="wstr"
+                      length="255"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[state]"
+                      dataType="wstr"
+                      length="255"
+                      name="state" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[zip]"
+                      dataType="wstr"
+                      length="255"
+                      name="zip" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[maildate]"
+                      dataType="wstr"
+                      length="255"
+                      name="maildate" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[descriptn]"
+                      dataType="wstr"
+                      length="255"
+                      name="descriptn" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[version]"
+                      dataType="wstr"
+                      length="255"
+                      name="version" />
+                    <externalMetadataColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input].ExternalColumns[notes]"
+                      dataType="wstr"
+                      length="255"
+                      name="notes" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import Excel Files\Member_Mail_Confirmations.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import Excel Files\Member_Mail_Confirmations.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import Excel Files\Member_Mail_Confirmations.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import Excel Files\Member_Mail_Confirmations.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import Excel Files.Paths[Excel Source Output]"
+              endId="Package\Import Excel Files\Member_Mail_Confirmations.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Import Excel Files\Confirmation File.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PackageVariables>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{6E15EB00-6D61-446D-BA6B-19265632FD8C}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{74125BB1-C4D7-4411-93AA-036EA07B04A6}">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;TaskHost xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsDataFlowDiagram&gt;&lt;dwd:BoundingTop&gt;2831&lt;/dwd:BoundingTop&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="7" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="40825" y="19341" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="0" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Excel Source" left="8546" top="2831" logicalid="4" controlid="4" masterid="0" hint1="0" hint2="0" width="8016" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000501f00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Import Excel Files\Confirmation File" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="OLE DB Destination" left="8520" top="5133" logicalid="5" controlid="5" masterid="0" hint1="0" hint2="0" width="8069" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="00080000851f00008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Import Excel Files\Member_Mail_Confirmations" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;ddscontrol controlprogid="MSDDS.Polyline" left="12155" top="3596" logicalid="6" controlid="6" masterid="0" hint1="0" hint2="0" width="799" height="2037" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobj&gt;&lt;polyline endtypedst="3" endtypesrc="1" usercolor="32768" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" /&gt;&lt;/ddsxmlobj&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Import Excel Files.Paths[Excel Source Output]" vartype="8" /&gt;&lt;property name="Virtual" value="0" vartype="11" /&gt;&lt;property name="VisibleAP" value="0" vartype="3" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;connector lineroutestyle="Microsoft.DataWarehouse.Layout.GraphLayout110" sourceid="4" destid="5" sourceattachpoint="15" destattachpoint="14" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="2" relatedid="0" virtual="0"&gt;&lt;point x="12554" y="3995" /&gt;&lt;point x="12554" y="5133" /&gt;&lt;/connector&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsDataFlowDiagram&gt;&lt;dwd:DtsComponentDesignerPropertiesList&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;50	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;50	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;1	DataSourceViewID&lt;/dwd:key&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:DtsComponentDesignTimeProperty&gt;&lt;dwd:key xsi:type="xsd:string"&gt;1	TableInfoObjectType&lt;/dwd:key&gt;&lt;dwd:value xsi:type="xsd:string"&gt;Table&lt;/dwd:value&gt;&lt;/dwd:DtsComponentDesignTimeProperty&gt;&lt;/dwd:DtsComponentDesignerPropertiesList&gt;&lt;/TaskHost&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{52FC9746-69D5-4B52-9CA1-FF7799AAE7E6}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="{74125BB1-C4D7-4411-93AA-036EA07B04A6}-79">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;PipelinePath xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:SourceName&gt;Excel Source Output&lt;/dwd:SourceName&gt;&lt;dwd:DestinationName&gt;OLE DB Destination Input&lt;/dwd:DestinationName&gt;&lt;/PipelinePath&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{0DAE7A3C-38DD-42E5-87FF-C2B1AA07BDA5}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="package-diagram">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;Package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsControlFlowDiagram&gt;&lt;dwd:BoundingTop&gt;2990&lt;/dwd:BoundingTop&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="4" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="40825" y="20267" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Flow Task" left="8731" top="2990" logicalid="3" controlid="3" masterid="0" hint1="0" hint2="0" width="6429" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800001d1900008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Import Excel Files" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsControlFlowDiagram&gt;&lt;/Package&gt;</DTS:Property>
+    </DTS:PackageVariable>
+    <DTS:PackageVariable
+      DTS:CreationName=""
+      DTS:DTSID="{C7AE0C10-7E1F-4CFD-A350-3804DF8DE003}"
+      DTS:Namespace="dts-designer-1.0"
+      DTS:ObjectName="package-diagram">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="PackageVariableValue">&lt;Package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0"&gt;&lt;dwd:DtsControlFlowDiagram&gt;&lt;dwd:BoundingTop&gt;2990&lt;/dwd:BoundingTop&gt;&lt;dwd:Layout&gt;&lt;dds&gt;&lt;diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="Microsoft.DataWarehouse.Layout.GraphLayout110" defaultlineroute="Microsoft.DataWarehouse.Layout.GraphLayout110" version="7" nextobject="4" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="0" scrolltop="0" gridx="150" gridy="150" marginx="1000" marginy="1000" zoom="100" x="40825" y="20267" backcolor="15334399" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="1" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}"&gt;&lt;font&gt;&lt;ddsxmlobjectstreamwrapper binary="01010000900180380100065461686f6d61" /&gt;&lt;/font&gt;&lt;mouseicon&gt;&lt;ddsxmlobjectstreamwrapper binary="6c74000000000000" /&gt;&lt;/mouseicon&gt;&lt;/diagram&gt;&lt;layoutmanager&gt;&lt;ddsxmlobj /&gt;&lt;/layoutmanager&gt;&lt;ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.2" tooltip="Data Flow Task" left="8731" top="2990" logicalid="3" controlid="3" masterid="0" hint1="0" hint2="0" width="6429" height="1164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0"&gt;&lt;control&gt;&lt;ddsxmlobjectstreaminitwrapper binary="000800001d1900008c040000" /&gt;&lt;/control&gt;&lt;layoutobject&gt;&lt;ddsxmlobj&gt;&lt;property name="LogicalObject" value="Package\Import Excel Files" vartype="8" /&gt;&lt;property name="ShowConnectorSource" value="0" vartype="2" /&gt;&lt;/ddsxmlobj&gt;&lt;/layoutobject&gt;&lt;shape groupshapeid="0" groupnode="0" /&gt;&lt;/ddscontrol&gt;&lt;/dds&gt;&lt;/dwd:Layout&gt;&lt;/dwd:DtsControlFlowDiagram&gt;&lt;/Package&gt;</DTS:Property>
+    </DTS:PackageVariable>
+  </DTS:PackageVariables>
+</DTS:Executable>
